@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 
 export const colors = {
-  brand: '#663399',
+  primary: '#242635',
+  secondary: '#FFF',
+  accent: '#BEFFE9',
   lilac: '#9d7cbf',
-  accent: '#ffb238',
   success: '#37b635',
   warning: '#ec1818',
   ui: {

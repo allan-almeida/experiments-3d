@@ -4,8 +4,8 @@ import styled from '@emotion/styled'
 import normalize from '../styles/normalize'
 
 const StyledLayoutRoot = styled.div`
-  display: flex;
-  flex-direction: column;
+  height: 100%;
+  width: 100%;
   min-height: 100vh;
 `
 

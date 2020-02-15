@@ -157,4 +157,14 @@ export default `
       padding-left: 1.25rem;
     }
   }
+
+  html,
+  body,
+  ___gatsby,
+  canvas {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
 `

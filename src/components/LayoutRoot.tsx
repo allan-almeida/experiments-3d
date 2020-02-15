@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 import normalize from '../styles/normalize'
 
 const StyledLayoutRoot = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   min-height: 100vh;
 `

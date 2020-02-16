@@ -4,19 +4,13 @@ import styled from '@emotion/styled'
 import { Link } from 'gatsby'
 
 import { heights, dimensions, colors } from '../styles/variables'
-import Container from './Container'
 
-const StyledHeader = styled.header`
+const Container = styled.header`
+  position: absolute;
+  z-index: 1;
   height: ${heights.header}px;
-  padding: 0 ${dimensions.containerPadding}rem;
-  background-color: ${colors.secondary};
-`
-
-const HeaderInner = styled(Container)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
+  padding: ${dimensions.containerPadding}rem;
+  padding-top: ${dimensions.containerPadding * 2}rem;
 `
 
 const HomepageLink = styled(Link)`
@@ -34,11 +28,10 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title }) => (
-  <StyledHeader>
-    <HeaderInner>
-      <HomepageLink to="/">{title}</HomepageLink>
-    </HeaderInner>
-  </StyledHeader>
+  <Container>
+    <HomepageLink to="/">{title}</HomepageLink>
+    <p>pagename</p>
+  </Container>
 )
 
 export default Header

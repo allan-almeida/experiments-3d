@@ -2,7 +2,7 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'R3F demo',
+    title: 'R3F Examples',
     description: 'A starter kit for TypeScript-based Gatsby projects with sensible defaults.',
     keywords: 'gatsbyjs, gatsby, javascript, sample, something',
     siteUrl: 'https://gatsby-starter-typescript-plus.netlify.com',

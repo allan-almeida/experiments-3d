@@ -13,7 +13,7 @@ const Content = styled.div`
   align-items: center;
   flex: 1;
 
-  p {
+p {
     margin: 0;
   }
 `
@@ -25,7 +25,7 @@ export default () => (
       https://codeburst.io/practical-recursion-implementing-a-file-tree-view-in-react-electron-af62e7b46d26 */}
       <Link to='/learn-with-jason'>/learn-with-jason</Link>
       <Link to='/alligator-tutorial'>/alligator-tutorial</Link>
-      <p>/particles</p>
+      <Link to='/particles'>/particles</Link>
       <p>/moksha</p>
     </Content>
   </IndexLayout>

@@ -39,7 +39,7 @@ const Plane = () => (
   </mesh>
 )
 
-const Box = () => {
+export const Box = () => {
   // Refs
   const meshRef = useRef()
   // State

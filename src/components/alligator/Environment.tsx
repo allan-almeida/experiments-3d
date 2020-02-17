@@ -10,6 +10,7 @@ export const Environment: React.FC = () => {
         attach="material"
         side={BackSide}
         metalness={0.4}
+        roughness={0.5}
       />
     </mesh>
   )

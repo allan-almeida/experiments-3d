@@ -47,7 +47,8 @@ const slugs = [
   '/learn-with-jason',
   '/alligator-tutorial',
   '/particles',
-  '/moksha'
+  // '/moksha',
+  // https://threejs.org/examples/?q=sprite#webgl_points_sprites
 ]
 
 export const Nav: React.FC<Props> = ({ title }) => {

@@ -50,8 +50,6 @@ export const Box: React.FC<Props> = () => {
     setActive(v => !v)
   }, [setActive])
 
-  console.log(active)
-
   return (
     <mesh
       ref={mesh}

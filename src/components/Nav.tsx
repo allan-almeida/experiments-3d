@@ -11,7 +11,7 @@ const Container = styled.nav`
   z-index: 1;
   height: ${heights.header}px;
   padding: ${dimensions.containerPadding}rem;
-  padding-top: ${dimensions.containerPadding * 2}rem;
+  padding-top: ${dimensions.containerPadding * 1.5}rem;
 
   a {
     display: block;
@@ -27,7 +27,7 @@ const Container = styled.nav`
 `
 
 const HomepageLink = styled(Link)`
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.3;
 

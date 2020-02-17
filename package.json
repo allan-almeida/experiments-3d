@@ -11,7 +11,7 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "clean": "rimraf public",
+    "clean": "rimraf public && rm -rf node_modules",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
     "dev": "gatsby develop",
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",

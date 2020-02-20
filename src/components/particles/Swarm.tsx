@@ -14,10 +14,11 @@ const data = new Array(number).fill().map(() => {
 })
 
 const plane = (i: number) => {
+  console.log('plane')
   // Plane
-  const amountX = 1.6
-  const amountZ = 3.2
-  const separation = 0.15
+  const amountX = 16
+  const amountZ = 32
+  const separation = 150
   const offsetX = ((amountX - 1) * separation) / 2
   const offsetZ = ((amountZ - 1) * separation) / 2
 
@@ -33,27 +34,14 @@ export const Swarm: React.FC = () => {
   const meshRef = useRef()
 
   // TODO: useMome for position
-  // const position = useMemo(() => {
-  //   return [random(-2, 2, true), random(-2, 2, true), random(-2, 2, true)]
-  // }, [])
+  const position = useMemo(() => {
+    return [random(-2, 2, true), random(-2, 2, true), random(-2, 2, true)]
+  }, [])
 
   return data.map((d, i) => (
-    <mesh key={i} castShadow receiveShadow position={plane(i)}>
-      {/* <mesh key={index} castShadow receiveShadow position={[100 - Math.random() * 200, 100 - Math.random() * 200, i * 1.5]}> */}
-      <sphereBufferGeometry attach="geometry" args={[0.1, 32, 32]} castShadow receiveShadow />
+    <mesh key={i} position={plane(i)}>
+      <sphereBufferGeometry attach="geometry" args={[5, 32, 32]} />
       <meshStandardMaterial attach="material" color={d.color} roughness={0.75} metalness={0.5} />
     </mesh>
   ))
-
-  return (
-    <mesh ref={meshRef}>
-      <sphereBufferGeometry attach="geometry" args={[1, 32, 32]} />
-      <meshBasicMaterial attach="material" color={0x0000ff} />
-      {/* TODO: */}
-      {/* <bufferGeometry attach='geometry'>
-        <bufferAttribute attachObject={['attributes', 'position']} count={vertices.length / 3} array={vertices} itemSize={3} />
-      </bufferGeometry>
-      <pointsMaterial attach="material" color={0x0000FF} /> */}
-    </mesh>
-  )
 }

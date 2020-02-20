@@ -47,6 +47,7 @@ const slugs = [
   '/learn-with-jason',
   '/alligator-tutorial',
   '/particles'
+  // '/scroll-rig',
   // '/moksha',
   // https://threejs.org/examples/?q=sprite#webgl_points_sprites
 ]

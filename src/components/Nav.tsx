@@ -46,24 +46,23 @@ https://codeburst.io/practical-recursion-implementing-a-file-tree-view-in-react-
 const slugs = [
   '/learn-with-jason',
   '/alligator-tutorial',
-  '/particles',
+  '/particles'
   // '/moksha',
   // https://threejs.org/examples/?q=sprite#webgl_points_sprites
 ]
 
 export const Nav: React.FC<Props> = ({ title }) => {
-  const route = window.location.pathname
+  let route
+  if (typeof window !== 'undefined') {
+    route = window.location.pathname || ''
+  }
   return (
     <Container>
       <HomepageLink to="/">{title}</HomepageLink>
 
-      {(route !== '/') &&
-        <p>{window.location.pathname}</p>}
+      {route !== '/' && <p>{route}</p>}
 
-      {(route === '/') && slugs.map((slug, i) => (
-        <Link key={i} to={slug}>{`${slug}`}</Link>
-      ))}
-
+      {route === '/' && slugs.map((slug, i) => <Link key={i} to={slug}>{`${slug}`}</Link>)}
     </Container>
   )
 }

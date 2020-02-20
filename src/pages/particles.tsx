@@ -10,7 +10,8 @@ import { Particles } from '../components/particles'
 export default () => {
   return (
     <IndexLayout>
-      <Canvas>
+      <Canvas
+        camera={{ fov: 75, near: 1, far: 5000, position: [600, 400, 1500] }}>
         <Controls type='trackball' />
         <Particles />
         <group>

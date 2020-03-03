@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useEffect } from 'react'
+import React, { useRef, useMemo, useEffect, useState } from 'react'
 import * as THREE from 'three'
 import { random } from 'lodash'
 import { useSprings, a } from 'react-spring/three'
@@ -41,25 +41,9 @@ const data = new Array(count).fill().map(() => {
   }
 })
 
-// const plane = (i: number) => {
-//   console.log('plane')
-//   // Plane
-//   const amountX = 16
-//   const amountZ = 32
-//   const separation = 150
-//   const offsetX = ((amountX - 1) * separation) / 2
-//   const offsetZ = ((amountZ - 1) * separation) / 2
-
-//   const x = (i % amountX) * separation
-//   const z = Math.floor(i / amountX) * separation
-//   const y = (Math.sin(x * 0.5) + Math.sin(z * 0.5)) * 200
-//   return [x - offsetX, y, z - offsetZ]
-//   // return [0, 0, 0]
-// }
-
 export const Swarm: React.FC = () => {
-  const data2 = new Array(count).fill()
-  console.log('render')
+  // State
+  const [shape, setShape] = useState(0)
   // Refs
   const meshRef = useRef()
 
@@ -68,10 +52,38 @@ export const Swarm: React.FC = () => {
     config: { mass: 5, tension: 150, friction: 50 }
   }))
 
-  const memoisedPlane = useMemo(() => data2.map((o, i) => plane(i)), [data2])
-  console.log('memoisedPlane', memoisedPlane)
+  const memoisedPlane = useMemo(() => data.map((o, i) => plane(i)), [data])
 
-  useEffect(() => setInterval(() => set(i => memoisedPlane[i]), 3000), [])
+  // const updateShape = () => {
+  //   console.log('updateShape', shape)
+  //   const newIndex = shape + 1
+  //   setShape(newIndex)
+  // }
+
+  // useEffect(() => {
+  // console.log('useEffect')
+  // setInterval(() => {
+  // console.log('setInterval')
+  // updateShape()
+  // return set((index: number) => memoisedPlane[index])
+  // return setShape(shape + 1)
+  // }, 3000)
+  // }, [shape])
+
+  // useEffect(() => {
+  //   console.log('shapeEffect')
+  // }, [shape])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('===== interval =====')
+      console.log('shape', shape)
+      setShape(shape + 1)
+      return set((index: number) => memoisedPlane[index])
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [shape])
+
   console.log('render++')
   return data.map((d, i) => (
     <a.mesh key={i} {...springs[i]}>

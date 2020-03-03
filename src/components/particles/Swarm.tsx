@@ -3,11 +3,13 @@ import * as THREE from 'three'
 import { random } from 'lodash'
 import { useSprings, a } from 'react-spring/three'
 
-const count = 512
+const COUNT = 512
+const DURATION = 5000
 
 const colors = ['#A2CCB6', '#FCEEB5', '#EE786E', '#e0feff', 'lightpink', 'lightblue']
 
-const randomize = (i: number) => {
+const randomize = () => {
+  console.log('randomize')
   return {
     position: [
       Math.random() * 4000 - 2000,
@@ -35,7 +37,7 @@ const plane = (i: number) => {
   }
 }
 
-const data = new Array(count).fill().map(() => {
+const data = new Array(COUNT).fill().map(() => {
   return {
     color: colors[Math.round(Math.random() * (colors.length - 1))]
   }
@@ -47,12 +49,17 @@ export const Swarm: React.FC = () => {
   // Refs
   const meshRef = useRef()
 
-  const [springs, set] = useSprings(count, (i: number) => ({
-    ...randomize(i),
+  const [springs, set] = useSprings(COUNT, () => ({
+    ...randomize(),
     config: { mass: 5, tension: 150, friction: 50 }
   }))
 
-  const memoisedPlane = useMemo(() => data.map((o, i) => plane(i)), [data])
+  // const memoisedPlane = useMemo(() => data.map((o, i) => plane(i)), [data])
+
+  const shapes = [
+    useMemo(() => data.map((o, i) => plane(i)), [data]),
+    useMemo(() => data.map((o, i) => randomize(i)), [data]),
+  ]
 
   // const updateShape = () => {
   //   console.log('updateShape', shape)
@@ -78,9 +85,11 @@ export const Swarm: React.FC = () => {
     const interval = setInterval(() => {
       console.log('===== interval =====')
       console.log('shape', shape)
-      setShape(shape + 1)
-      return set((index: number) => memoisedPlane[index])
-    }, 3000)
+      setShape((shape + 1) % shapes.length)
+
+      return set((index: number) => shapes[shape][index])
+
+    }, DURATION)
     return () => clearInterval(interval)
   }, [shape])
 

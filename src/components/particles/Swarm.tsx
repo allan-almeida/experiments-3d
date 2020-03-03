@@ -58,6 +58,7 @@ const data = new Array(count).fill().map(() => {
 // }
 
 export const Swarm: React.FC = () => {
+  const data2 = new Array(count).fill()
   console.log('render')
   // Refs
   const meshRef = useRef()
@@ -67,8 +68,11 @@ export const Swarm: React.FC = () => {
     config: { mass: 5, tension: 150, friction: 50 }
   }))
 
-  useEffect(() => void setInterval(() => set(i => ({ ...plane(i) })), 3000), [])
+  const memoisedPlane = useMemo(() => data2.map((o, i) => plane(i)), [data2])
+  console.log('memoisedPlane', memoisedPlane)
 
+  useEffect(() => setInterval(() => set(i => memoisedPlane[i]), 3000), [])
+  console.log('render++')
   return data.map((d, i) => (
     <a.mesh key={i} {...springs[i]}>
       <sphereBufferGeometry attach="geometry" args={[20, 32, 32]} />

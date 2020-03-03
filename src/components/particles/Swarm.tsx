@@ -1,6 +1,4 @@
-import React, { useRef, useMemo, useEffect, useState } from 'react'
-import * as THREE from 'three'
-import { random } from 'lodash'
+import React, { useMemo, useEffect, useState } from 'react'
 import { useSprings, a } from 'react-spring/three'
 
 import { randomize, plane, cube, sphere } from './shapes'
@@ -19,9 +17,8 @@ const data = new Array(COUNT).fill().map(() => {
 export const Swarm: React.FC = () => {
   // State
   const [shape, setShape] = useState(0)
-  // Refs
-  const meshRef = useRef()
 
+  // Springs
   const [springs, set] = useSprings(COUNT, () => ({
     ...randomize(),
     config: { mass: 5, tension: 150, friction: 50 }
@@ -30,11 +27,11 @@ export const Swarm: React.FC = () => {
   // Calculate positions of different shapes
   const shapes = [
     useMemo(() => data.map((o, i) => plane(i)), [data]),
-    useMemo(() => data.map((o, i) => randomize(i)), [data]),
+    useMemo(() => data.map(() => randomize()), [data]),
     useMemo(() => data.map((o, i) => cube(i)), [data]),
-    useMemo(() => data.map((o, i) => randomize(i)), [data]),
+    useMemo(() => data.map(() => randomize()), [data]),
     useMemo(() => data.map((o, i) => sphere(i, COUNT)), [data]),
-    useMemo(() => data.map((o, i) => randomize(i)), [data])
+    useMemo(() => data.map(() => randomize()), [data])
   ]
 
   useEffect(() => {

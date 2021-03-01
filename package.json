@@ -56,7 +56,7 @@
     "react-helmet": "^5.2.1",
     "react-spring": "^8.0.27",
     "react-three-fiber": "^4.0.16",
-    "three": "^0.113.2",
+    "three": "^0.125.0",
     "typescript": "^3.5.2"
   },
   "devDependencies": {
